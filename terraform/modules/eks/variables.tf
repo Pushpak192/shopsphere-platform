@@ -1,7 +1,3 @@
-variable "aws_region" {
-  type = string
-}
-
 variable "project_name" {
   type = string
 }
@@ -10,19 +6,15 @@ variable "environment" {
   type = string
 }
 
-variable "vpc_cidr" {
+variable "cluster_role_arn" {
   type = string
 }
 
-variable "availability_zones" {
-  type = list(string)
+variable "worker_node_role_arn" {
+  type = string
 }
 
-variable "public_subnet_cidrs" {
-  type = list(string)
-}
-
-variable "private_subnet_cidrs" {
+variable "private_subnet_ids" {
   type = list(string)
 }
 
@@ -44,4 +36,8 @@ variable "min_size" {
 
 variable "max_size" {
   type = number
+}
+
+variable "common_tags" {
+  type = map(string)
 }
