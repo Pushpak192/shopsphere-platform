@@ -20,3 +20,13 @@ private_subnet_cidrs = [
   "10.0.11.0/24",
   "10.0.12.0/24"
 ]
+
+kubernetes_version = "1.33"
+
+instance_type = "c7i-flex.large"
+
+desired_size = 2
+
+min_size = 2
+
+max_size = 3
