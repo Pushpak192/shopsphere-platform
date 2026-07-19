@@ -41,3 +41,4 @@ output "oidc_issuer" {
 output "node_group_name" {
   value = module.eks.node_group_name
 }
+
