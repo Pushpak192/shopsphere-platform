@@ -1,0 +1,13 @@
+aws_region = "ap-south-1"
+
+cluster_name = "shopsphere-dev-eks"
+
+db_username = "shopsphere"
+
+db_password = "shopsphere123"
+
+db_name = "shopsphere"
+
+jwt_secret = "shopsphere-jwt-secret"
+
+app_secret = "shopsphere-app-secret"
