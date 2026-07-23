@@ -1,42 +1,27 @@
-import { Button, Container, Paper, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
-  const navigate = useNavigate();
 
-  const username = localStorage.getItem("username");
-  const role = localStorage.getItem("role");
+    const navigate = useNavigate();
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("username");
-    localStorage.removeItem("role");
+    return (
 
-    navigate("/");
-  };
+        <div style={{ padding: "30px" }}>
 
-  return (
-    <Container maxWidth="md">
-      <Paper elevation={5} sx={{ p: 4, mt: 10 }}>
-        <Typography variant="h4" gutterBottom>
-          Welcome {username}
-        </Typography>
+            <h1>Dashboard</h1>
 
-        <Typography variant="h6" gutterBottom>
-          Role : {role}
-        </Typography>
+            <br />
 
-        <Button
-          variant="contained"
-          color="error"
-          onClick={logout}
-          sx={{ mt: 3 }}
-        >
-          Logout
-        </Button>
-      </Paper>
-    </Container>
-  );
+            <button
+                onClick={() => navigate("/products")}
+            >
+                View Products
+            </button>
+
+        </div>
+
+    );
+
 }
 
 export default Dashboard;

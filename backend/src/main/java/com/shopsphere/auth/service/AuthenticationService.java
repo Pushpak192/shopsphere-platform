@@ -6,6 +6,9 @@ import com.shopsphere.auth.dto.RegisterRequest;
 import com.shopsphere.auth.entity.Role;
 import com.shopsphere.auth.entity.User;
 import com.shopsphere.auth.repository.UserRepository;
+import com.shopsphere.exception.EmailAlreadyExistsException;
+import com.shopsphere.exception.UserNotFoundException;
+import com.shopsphere.exception.UsernameAlreadyExistsException;
 import com.shopsphere.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,21 +22,18 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService {
 
     private final UserRepository userRepository;
-
     private final PasswordEncoder passwordEncoder;
-
     private final JwtService jwtService;
-
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
 
         if (userRepository.existsByUsername(request.getUsername())) {
-            throw new RuntimeException("Username already exists");
+            throw new UsernameAlreadyExistsException("Username already exists");
         }
 
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new RuntimeException("Email already exists");
+            throw new EmailAlreadyExistsException("Email already exists");
         }
 
         User user = User.builder()
@@ -72,7 +72,8 @@ public class AuthenticationService {
         );
 
         User user = userRepository.findByUsername(request.getUsername())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() ->
+                        new UserNotFoundException("User not found"));
 
         UserDetails userDetails =
                 org.springframework.security.core.userdetails.User
