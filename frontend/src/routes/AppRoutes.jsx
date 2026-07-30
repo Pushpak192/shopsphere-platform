@@ -1,34 +1,60 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import ProductList from "../pages/Products/ProductList";
+import Orders from "../pages/Orders/Orders";
 
-function AppRoutes() {
+const PrivateRoute = ({ children }) => {
+  const token = localStorage.getItem("token");
 
-    return (
+  return token ? children : <Navigate to="/login" replace />;
+};
 
-        <BrowserRouter>
+const AppRoutes = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
 
-            <Routes>
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
 
-                <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
 
-                <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
-                <Route path="/register" element={<Register />} />
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
 
-                <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/products"
+          element={
+            <PrivateRoute>
+              <ProductList />
+            </PrivateRoute>
+          }
+        />
 
-                <Route path="/products" element={<ProductList />} />
+        <Route
+          path="/orders"
+          element={
+            <PrivateRoute>
+              <Orders />
+            </PrivateRoute>
+          }
+        />
 
-            </Routes>
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
 
-        </BrowserRouter>
-
-    );
-
-}
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
 export default AppRoutes;

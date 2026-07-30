@@ -34,23 +34,23 @@ spec:
             - name: DB_URL
               valueFrom:
                 secretKeyRef:
-                  name: shopsphere-secret
+                  name: backend-secret
                   key: DB_URL
 
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: shopsphere-secret
+                  name: backend-secret
                   key: DB_USERNAME
 
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: shopsphere-secret
+                  name: backend-secret
                   key: DB_PASSWORD
 
             - name: JWT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: shopsphere-secret
+                  name: backend-secret
                   key: JWT_SECRET
