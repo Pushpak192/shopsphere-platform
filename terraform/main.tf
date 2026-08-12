@@ -55,5 +55,7 @@ module "eks" {
   max_size = var.max_size
 
   common_tags = local.common_tags
+  
+  jenkins_role_arn = "arn:aws:iam::047612973664:role/shopsphere-jenkins-role"
 
 }

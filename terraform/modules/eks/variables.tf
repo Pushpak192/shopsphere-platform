@@ -41,3 +41,7 @@ variable "max_size" {
 variable "common_tags" {
   type = map(string)
 }
+
+variable "jenkins_role_arn" {
+  type = string
+}

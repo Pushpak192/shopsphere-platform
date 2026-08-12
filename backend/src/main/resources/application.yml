@@ -4,7 +4,7 @@ spring:
     name: shopsphere-backend
 
   datasource:
-    url: ${DB_URL}
+    url: ${12345567890}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
