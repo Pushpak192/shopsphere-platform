@@ -5,10 +5,14 @@ metadata:
   namespace: monitoring
   annotations:
     alb.ingress.kubernetes.io/group.name: shopsphere-platform
-    alb.ingress.kubernetes.io/group.order: "20"
+    alb.ingress.kubernetes.io/group.order: "5"
     alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/healthcheck-path: /grafana/login
+    alb.ingress.kubernetes.io/success-codes: "200"
+
 spec:
   ingressClassName: alb
+
   rules:
     - http:
         paths:
