@@ -5,3 +5,4 @@ terraform.tfstate.*
 *.pem
 .env
 node_modules/
+**/target/
